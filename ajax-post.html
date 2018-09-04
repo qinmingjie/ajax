@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+	<meta charset="utf-8">
+	<title>ajax请求</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		form{
+			width:300px;
+			height:150px;
+			background-color:skyblue;
+			border:1px solid #999;
+			padding:15px;
+			text-align:center;
+			margin:150px auto;
+			border-radius:5px;
+		}
+		p{
+			font-size:14px;
+			color:#333;
+			margin:5px 0;
+		}
+
+		span{
+			display:block;
+			margin:5px 0;
+		}
+
+		#username{
+			outline:none;
+			padding-left:5px;
+			box-sizing:border-box;
+		}
+	</style>
+</head>
+<body>
+	<form action="php/post.php" method="post">
+		<p>判断用户名是否存在</p>
+		<input type="text" name="" value="" id="username">
+		<span id="res"></span>
+		<input type="button" name="" value="提交检测" id="submit">
+	</form>
+	<script>
+		//获取点击按钮
+		var btn = document.getElementById("submit");
+		btn.onclick = function(){
+			//获取value值
+			var value = document.getElementById("username").value;
+			var res = document.getElementById("res")
+			// console.log(value)
+			// 判断是否为低版本浏览器
+			if(window.XMLHttpRequest){
+				var xhr = new XMLHttpRequest();
+			}
+			else{
+				var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xhr.open("post","php/post.php",true);
+			var end = "username=" + value;
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhr.send(end);
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status==200){
+					var result = xhr.responseText;
+					res.innerHTML = result
+				}
+			}
+		}
+	</script>
+</body>
+</html>
