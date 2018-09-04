@@ -1,2 +1,2 @@
-# class-library
-js方法类库自建
+# ajax
+ajax实现原理及代码
