@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:200px;
+            padding:30px;
+            margin:15px auto;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h4>formData上传文件</h4>
+        <p>
+            <input type="file" class="file">
+        </p>
+        <p><button>点击上传</button></p>
+    </div>
+</body>
+<script>
+    let myfile = document.querySelector(".file");
+    let btn = document.querySelector("button");
+    btn.onclick = function(){
+        let file = (myfile.files)[0];
+        // console.log(files,files[0])
+        let xhr = new XMLHttpRequest();
+
+        //新建formdata对象上传文件
+        let form = new FormData()
+        form.append("img",file);
+        form.append("username","qmj");
+
+        //发送请求
+        xhr.open("post","/post",true);
+        xhr.onload = function(){
+            console.log(xhr.responseText);
+        }
+        xhr.send(form)
+    }
+</script>
+</html>

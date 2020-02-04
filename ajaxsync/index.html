@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button>按钮一</button>
+    <button>按钮二</button>
+    <script>
+        let btn = document.querySelectorAll("button")
+        btn[0].onclick = function(){
+            let xhr = new XMLHttpRequest();
+            xhr.open("get","/get",false);
+            xhr.onload = function(){
+                // console.log(xhr.readyState,xhr.status)
+                console.log("我是同步的");
+            }
+            xhr.send()
+        }
+        btn[1].onclick = function(){
+            // let xhr = new XMLHttpRequest();
+            // xhr.open("get","/get?",true);
+            // xhr.onreadystatechange = function(){
+            //     if(xhr.readyState == 4){
+            //         if(xhr.status == 200){
+            //             console.log("我是异步的");
+            //         }
+            //     }
+            // }
+            // xhr.send()
+            console.log("我没有请求")
+        }
+    </script>
+</body>
+</html>
